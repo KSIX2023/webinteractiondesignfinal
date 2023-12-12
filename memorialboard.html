@@ -33,6 +33,12 @@ form {
     left: 0;
     top: 0;
 }
+#backButton {
+    position: fixed;  /* 위치를 고정 */
+    bottom: 70px;  /* 페이지 하단으로부터 20px 떨어진 위치에 배치 */
+    left: 50%;  /* 페이지 왼쪽으로부터 50% 떨어진 위치에 배치 */
+    transform: translateX(-50%);  /* 좌우 중앙 정렬 보정 */
+} 
 .playButton img {
     width: 100%;
     height: 100%;
@@ -63,13 +69,13 @@ form {
 </head>
 <body>
     <audio id="mainAudio" src="main2.mp3"></audio>
-   <div id="playButton" class="playButton">
-    <img src="button.jpg" alt="playButton">
-    <div class="clickPrompt">아무 곳이나 클릭해주세요</div>
-    <button id="backButton">돌아가기</button>
-</div>
+    <div id="playButton" class="playButton">
+            <img src="button.jpg" alt="playButton">
+            <div class="clickPrompt">아무 곳이나 클릭해주세요</div>
+            
         </a>
         </div>
+        <button id="backButton" onclick="goBack()">이전으로</button>
     
     <h1>In honor of Sakamoto Ryuichi</h1>
     <p>This is a place to remember and honor our loved artist. Please click the empty place to leave your a memorial message<br> 사카모토 류이치를 기리기 위한 추모 게시판입니다. 빈 곳을 클릭하여 여러분의 메시지를 남겨주세요.<br>메모지를 더블클릭하시면 자세한 내용을 볼 수 있고, 다시 더블클릭하면 원래대로 돌아갑니다. 메모지를 드래그하여 위치도 자유롭게 옮길 수 있습니다.</p>
@@ -102,24 +108,6 @@ form {
         }
     </style>
    <script>
-       document.getElementById('backButton').addEventListener('click', function() {
-    // 사용자를 처음 페이지로 돌려보냅니다.
-    window.location.href = 'index.html';
-});
-
-// 페이지가 로드될 때 img2의 상태를 불러옵니다.
-window.addEventListener('load', function() {
-    var img2State = localStorage.getItem('img2State');
-    if (img2State) {
-        // img2의 상태를 복원합니다.
-        document.getElementById('img2').src = img2State;
-    }
-});
-
-// img2의 상태를 저장합니다.
-document.getElementById('img2').addEventListener('change', function() {
-    localStorage.setItem('img2State', this.src);
-});
     document.addEventListener('mousemove', function(event) {
     document.body.style.setProperty('--x', event.clientX + 'px');
     document.body.style.setProperty('--y', event.clientY + 'px');
@@ -282,7 +270,9 @@ img.src = images[randomIndex];
    
     }
     });
-
+    function goBack() {
+    window.location.href = 'main.html';  // 'main.html'을 메인 페이지의 파일 이름으로 변경해야 합니다.
+}
     
     </script>
     </body>
