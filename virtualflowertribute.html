@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>body {
+        cursor: url('hand.png'), auto;
+    }</style>
+</head>
+<body>
+    <img id="flower1" src="flower1.png" style="width: 100px; height: 100px; position: fixed; bottom: 0;">
+    <img id="flower2" src="flower2.png" style="width: 100px; height: 100px; position: fixed; bottom: 0; left: 100px;">
+<script>
+    let selectedFlower = null;
+
+document.getElementById('flower1').addEventListener('click', function() {
+    selectedFlower = 'flower1.png';
+    document.body.style.cursor = 'auto';  // 커서 이미지를 기본값으로 설정합니다.
+    this.style.cursor = `url(${selectedFlower}), auto`;  // 커서 이미지를 꽃 이미지로 설정합니다.
+});
+
+document.getElementById('flower2').addEventListener('click', function() {
+    selectedFlower = 'flower2.png';
+    document.body.style.cursor = 'auto';  // 커서 이미지를 기본값으로 설정합니다.
+    this.style.cursor = `url(${selectedFlower}), auto`;  // 커서 이미지를 꽃 이미지로 설정합니다.
+});
+
+document.body.addEventListener('click', function(event) {
+    if (selectedFlower) {
+        let img = document.createElement('img');
+        img.src = selectedFlower;
+        img.style.width = '100px';
+        img.style.height = '100px';
+        img.style.position = 'absolute';
+        img.style.left = `${event.clientX}px`;
+        img.style.top = `${event.clientY}px`;
+        document.body.appendChild(img);
+        selectedFlower = null;
+        document.body.style.cursor = `url('hand.png'), auto`;  // 커서 이미지를 손 이미지로 설정합니다.
+    }
+});
+</script>
+</body>
+</html>
