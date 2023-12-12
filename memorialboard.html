@@ -63,9 +63,11 @@ form {
 </head>
 <body>
     <audio id="mainAudio" src="main2.mp3"></audio>
-    <div id="playButton" class="playButton">
-            <img src="button.jpg" alt="playButton">
-            <div class="clickPrompt">아무 곳이나 클릭해주세요</div>
+   <div id="playButton" class="playButton">
+    <img src="button.jpg" alt="playButton">
+    <div class="clickPrompt">아무 곳이나 클릭해주세요</div>
+    <button id="backButton">돌아가기</button>
+</div>
         </a>
         </div>
     
@@ -100,6 +102,24 @@ form {
         }
     </style>
    <script>
+       document.getElementById('backButton').addEventListener('click', function() {
+    // 사용자를 처음 페이지로 돌려보냅니다.
+    window.location.href = 'index.html';
+});
+
+// 페이지가 로드될 때 img2의 상태를 불러옵니다.
+window.addEventListener('load', function() {
+    var img2State = localStorage.getItem('img2State');
+    if (img2State) {
+        // img2의 상태를 복원합니다.
+        document.getElementById('img2').src = img2State;
+    }
+});
+
+// img2의 상태를 저장합니다.
+document.getElementById('img2').addEventListener('change', function() {
+    localStorage.setItem('img2State', this.src);
+});
     document.addEventListener('mousemove', function(event) {
     document.body.style.setProperty('--x', event.clientX + 'px');
     document.body.style.setProperty('--y', event.clientY + 'px');
